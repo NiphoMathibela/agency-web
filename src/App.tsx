@@ -10,27 +10,29 @@ import ServicesSec from './components/sections/Services';
 import About from './components/pages/About';
 import Contact from './components/pages/Contact';
 import './styles/animations.css';
-import Footer from './components/home/Footer';
+import Footer from './components/layout/Footer';
 
 function App() {
   return (
     <Router>
-      <div className="min-h-screen bg-black">
+      <div className="min-h-screen bg-black flex flex-col">
         <Navbar />
-        <Routes>
-          <Route path="/" element={
-            <>
-              <Hero />
-              <Experience />
-              <Projects />
-              <ServicesSec/>
-            </>
-          } />
-          <Route path="/about" element={<About />} />
-          <Route path="/services" element={<Services />} />
-          <Route path="/contact" element={<Contact />} />
-        </Routes>
-        <Footer/>
+        <main className="flex-grow">
+          <Routes>
+            <Route path="/" element={
+              <>
+                <Hero />
+                <Experience />
+                <Projects />
+                <ServicesSec/>
+              </>
+            } />
+            <Route path="/about" element={<About />} />
+            <Route path="/services" element={<Services />} />
+            <Route path="/contact" element={<Contact />} />
+          </Routes>
+        </main>
+        <Footer />
       </div>
     </Router>
   );
