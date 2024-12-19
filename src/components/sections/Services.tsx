@@ -28,8 +28,8 @@ const ServicesSec = () => {
   return (
     <section className="py-20 bg-black">
       <div className="max-w-6xl mx-auto px-6">
-        <h2 className="text-3xl font-serif italic text-white mb-12">
-          We offer a <span className="italic">variety</span> of different digital services
+        <h2 className="text-5xl text-white mb-12">
+          We offer a <span className="italic font-serif">variety</span> of different digital services
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {services.map((service, index) => (
@@ -37,7 +37,7 @@ const ServicesSec = () => {
               <div className="text-blue-500 mb-4 group-hover:text-blue-400 transition-colors">
                 {service.icon}
               </div>
-              <h3 className="text-xl text-white mb-2">{service.title}</h3>
+              <h3 className="text-2xl text-white mb-2">{service.title}</h3>
               <p className="text-white/60 text-sm">{service.description}</p>
             </div>
           ))}

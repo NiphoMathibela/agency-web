@@ -10,6 +10,7 @@ import ServicesSec from './components/sections/Services';
 import About from './components/pages/About';
 import Contact from './components/pages/Contact';
 import './styles/animations.css';
+import Footer from './components/home/Footer';
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
           <Route path="/services" element={<Services />} />
           <Route path="/contact" element={<Contact />} />
         </Routes>
+        <Footer/>
       </div>
     </Router>
   );

@@ -1,5 +1,3 @@
-import React from 'react';
-
 const stats = [
   { number: '200+', label: 'Projects completed' },
   { number: '80+', label: 'Happy clients' },

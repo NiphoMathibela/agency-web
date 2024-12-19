@@ -23,8 +23,8 @@ const Projects = () => {
     <section className="py-20 bg-black">
       <div className="max-w-6xl mx-auto px-6">
         <div className="flex justify-between items-center mb-12">
-          <h2 className="text-3xl font-serif italic text-white">
-            Proud of our <span className="italic">projects</span>
+          <h2 className="text-5xl text-white">
+            Proud of our <span className="italic font-serif">projects</span>
           </h2>
           <button className="text-blue-500 hover:text-blue-400">View all</button>
         </div>
