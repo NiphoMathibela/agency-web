@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Users, Award, Clock } from 'lucide-react';
+import BlueHue from '../ui/BlueHue';
 
 const teamMembers = [
   {
@@ -22,12 +23,13 @@ const teamMembers = [
 
 const About = () => {
   return (
-    <div className="min-h-screen bg-black">
+    <div className="min-h-screen bg-black pt-20 relative overflow-hidden">
+      <BlueHue variant="default" />
       <motion.div 
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.6 }}
-        className="max-w-6xl mx-auto px-6 py-20"
+        className="max-w-6xl mx-auto px-6 py-20 relative z-10"
       >
         <div className="text-center mb-16">
           <motion.h1 

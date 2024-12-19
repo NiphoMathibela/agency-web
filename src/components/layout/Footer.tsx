@@ -1,5 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { Twitter, Instagram, MessageCircle } from 'lucide-react';
+import BlueHue from '../ui/BlueHue';
 
 const Footer = () => {
   const mainPages = [
@@ -18,78 +20,99 @@ const Footer = () => {
   ];
 
   const socialLinks = [
-    { name: 'Twitter', href: 'https://twitter.com' },
-    { name: 'Instagram', href: 'https://instagram.com' },
-    { name: 'Whatsapp', href: 'https://whatsapp.com' },
+    { 
+      name: 'Twitter', 
+      href: 'https://twitter.com',
+      Icon: Twitter
+    },
+    { 
+      name: 'Instagram', 
+      href: 'https://instagram.com',
+      Icon: Instagram
+    },
+    { 
+      name: 'Whatsapp', 
+      href: 'https://whatsapp.com',
+      Icon: MessageCircle
+    },
   ];
 
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-gradient-to-br from-blue-900 to-blue-950 text-white py-16">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <footer className="bg-black relative overflow-hidden">
+      <BlueHue variant="intense" className="opacity-50" />
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Social Links */}
-        <div className="flex gap-4 mb-16">
-          {socialLinks.map((link) => (
-            <a
-              key={link.name}
-              href={link.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-4 py-2 border border-white/20 rounded-full hover:bg-white/10 transition-colors duration-300"
-            >
-              {link.name}
-            </a>
-          ))}
+        <div className="py-16 border-b border-white/10">
+          <div className="flex flex-wrap gap-4 justify-center">
+            {socialLinks.map(({ name, href, Icon }) => (
+              <a
+                key={name}
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-4 rounded-2xl backdrop-blur-sm bg-white/5 border border-white/10 
+                         transition-all duration-300 hover:bg-white/10 hover:border-white/20 group"
+                aria-label={name}
+              >
+                <Icon className="h-6 w-6 text-white/80 group-hover:text-blue-400 group-hover:scale-110 transition-all duration-300" />
+              </a>
+            ))}
+          </div>
         </div>
 
         {/* Navigation Links */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
-          <div>
-            <h3 className="text-lg font-medium mb-4">Main Pages</h3>
-            <ul className="space-y-2">
+        <div className="py-16 grid grid-cols-1 md:grid-cols-2 gap-12">
+          <div className="space-y-8">
+            <h3 className="text-2xl font-light text-white mb-6">Main Pages</h3>
+            <div className="grid grid-cols-2 gap-4">
               {mainPages.map((page) => (
-                <li key={page.name}>
-                  <Link 
-                    to={page.href}
-                    className="text-white/80 hover:text-white transition-colors duration-300"
-                  >
-                    {page.name}
-                  </Link>
-                </li>
+                <Link 
+                  key={page.name}
+                  to={page.href}
+                  className="text-white/60 hover:text-blue-400 transition-colors duration-300 text-sm"
+                >
+                  {page.name}
+                </Link>
               ))}
-            </ul>
+            </div>
           </div>
-          <div>
-            <h3 className="text-lg font-medium mb-4">Utility pages</h3>
-            <ul className="space-y-2">
+          <div className="space-y-8">
+            <h3 className="text-2xl font-light text-white mb-6">Utility pages</h3>
+            <div className="space-y-4">
               {utilityPages.map((page) => (
-                <li key={page.name}>
-                  <Link 
-                    to={page.href}
-                    className="text-white/80 hover:text-white transition-colors duration-300"
-                  >
-                    {page.name}
-                  </Link>
-                </li>
+                <Link 
+                  key={page.name}
+                  to={page.href}
+                  className="text-white/60 hover:text-blue-400 transition-colors duration-300 block text-sm"
+                >
+                  {page.name}
+                </Link>
               ))}
-            </ul>
+            </div>
           </div>
         </div>
 
         {/* Email and Copyright */}
-        <div className="border-t border-white/10 pt-8">
+        <div className="py-16 border-t border-white/10">
           <a 
             href="mailto:Hello@Creativemind.Agency"
-            className="text-4xl font-light hover:text-white/80 transition-colors duration-300 block mb-8"
+            className="block text-center text-4xl font-light text-white hover:text-blue-400 transition-colors duration-300 mb-8
+                     backdrop-blur-sm rounded-2xl p-8 bg-white/5 border border-white/10 hover:bg-white/10 hover:border-white/20"
           >
             Hello@Creativemind.Agency
           </a>
-          <div className="flex justify-between items-center text-white/60 text-sm">
-            <Link to="/privacy-policy" className="hover:text-white transition-colors duration-300">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-white/40 text-sm">
+            <Link 
+              to="/privacy-policy" 
+              className="hover:text-blue-400 transition-colors duration-300 order-2 md:order-1"
+            >
               Privacy policy
             </Link>
-            <p>Creative Mind Agency {currentYear}</p>
+            <p className="order-1 md:order-2">
+              {currentYear} Creative Mind Agency. All rights reserved.
+            </p>
           </div>
         </div>
       </div>

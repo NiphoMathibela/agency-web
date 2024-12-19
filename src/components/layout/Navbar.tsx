@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, Github, Linkedin, Twitter } from 'lucide-react';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -13,12 +15,30 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const navItems = ['Projects', 'About', 'Services', 'Contact'];
+  // Close mobile menu when route changes
+  useEffect(() => {
+    setIsOpen(false);
+  }, [location]);
+
+  const navItems = [
+    { name: 'Projects', path: '/projects' },
+    { name: 'About', path: '/about' },
+    { name: 'Services', path: '/services' },
+    { name: 'Contact', path: '/contact' }
+  ];
+
   const socialLinks = [
     { Icon: Github, href: 'https://github.com', label: 'GitHub' },
     { Icon: Linkedin, href: 'https://linkedin.com', label: 'LinkedIn' },
     { Icon: Twitter, href: 'https://twitter.com', label: 'Twitter' },
   ];
+
+  const isActivePath = (path: string) => {
+    if (path === '/') {
+      return location.pathname === '/';
+    }
+    return location.pathname === path;
+  };
 
   return (
     <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${
@@ -26,22 +46,33 @@ const Navbar = () => {
     }`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-14">
-          <div className="text-white text-lg font-medium tracking-wide transition-all duration-300 hover:text-purple-400 cursor-pointer">
+          <Link 
+            to="/" 
+            className="text-white text-lg font-medium tracking-wide transition-all duration-300 hover:text-purple-400 cursor-pointer"
+          >
             Creative Mind
-          </div>
+          </Link>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex space-x-8">
             {navItems.map((item) => (
-              <a
-                key={item}
-                href={`#${item.toLowerCase()}`}
-                className="relative text-white/80 hover:text-white text-sm transition-all duration-300 group py-2"
+              <Link
+                key={item.name}
+                to={item.path}
+                className={`relative text-sm transition-all duration-300 group py-2
+                  ${isActivePath(item.path) 
+                    ? 'text-white' 
+                    : 'text-white/80 hover:text-white'
+                  }`}
               >
-                <span className="relative z-10">{item}</span>
-                <span className="absolute inset-0 bg-purple-500/10 rounded-lg scale-0 group-hover:scale-100 transition-transform duration-300 ease-out" />
-                <span className="absolute bottom-0 left-0 h-[2px] w-0 bg-purple-400 group-hover:w-full transition-all duration-300 ease-out" />
-              </a>
+                <span className="relative z-10">{item.name}</span>
+                <span className={`absolute inset-0 bg-purple-500/10 rounded-lg scale-0 group-hover:scale-100 transition-transform duration-300 ease-out
+                  ${isActivePath(item.path) ? 'scale-100' : ''}`} 
+                />
+                <span className={`absolute bottom-0 left-0 h-[2px] bg-purple-400 transition-all duration-300 ease-out
+                  ${isActivePath(item.path) ? 'w-full' : 'w-0 group-hover:w-full'}`} 
+                />
+              </Link>
             ))}
           </div>
 
@@ -84,14 +115,17 @@ const Navbar = () => {
         >
           <div className="px-2 pt-2 pb-3 space-y-1">
             {navItems.map((item) => (
-              <a
-                key={item}
-                href={`#${item.toLowerCase()}`}
-                className="block text-white/80 hover:text-white hover:bg-purple-500/10 px-3 py-2 rounded-md text-base transition-all duration-300"
-                onClick={() => setIsOpen(false)}
+              <Link
+                key={item.name}
+                to={item.path}
+                className={`block px-3 py-2 rounded-md text-base transition-all duration-300
+                  ${isActivePath(item.path)
+                    ? 'text-white bg-purple-500/20'
+                    : 'text-white/80 hover:text-white hover:bg-purple-500/10'
+                  }`}
               >
-                {item}
-              </a>
+                {item.name}
+              </Link>
             ))}
           </div>
           {/* Social Icons - Mobile */}

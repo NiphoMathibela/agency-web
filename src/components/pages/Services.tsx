@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Globe, Code, Video, Search } from 'lucide-react';
+import BlueHue from '../ui/BlueHue';
 
 const services = [
   {
@@ -31,51 +32,53 @@ const services = [
 
 const Services = () => {
   return (
-    <div className="min-h-screen bg-black">
-      <motion.div 
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.6 }}
-        className="max-w-6xl mx-auto px-6 py-20"
-      >
-        <motion.h1 
-          initial={{ y: 20, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ delay: 0.2 }}
-          className="text-6xl font-light text-white mb-12"
+    <div className="min-h-screen bg-black pt-20 relative overflow-hidden">
+      <BlueHue variant="default" />
+      <div className="max-w-6xl mx-auto px-6 py-20 relative z-10">
+        <motion.div 
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.6 }}
         >
-          Services
-        </motion.h1>
+          <motion.h1 
+            initial={{ y: 20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ delay: 0.2 }}
+            className="text-6xl font-light text-white mb-12"
+          >
+            Services
+          </motion.h1>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {services.map((service, index) => (
-            <motion.div
-              key={service.title}
-              initial={{ y: 20, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ delay: 0.2 * (index + 1) }}
-              className="group relative overflow-hidden rounded-lg"
-            >
-              <div className="aspect-video overflow-hidden">
-                <img
-                  src={service.image}
-                  alt={service.title}
-                  className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
-                />
-              </div>
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <div className="absolute bottom-6 left-6">
-                  <div className="text-blue-500 mb-4">
-                    {service.icon}
-                  </div>
-                  <h3 className="text-2xl text-white mb-2">{service.title}</h3>
-                  <p className="text-white/60">{service.description}</p>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {services.map((service, index) => (
+              <motion.div
+                key={service.title}
+                initial={{ y: 20, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ delay: 0.2 * (index + 1) }}
+                className="group relative overflow-hidden rounded-lg"
+              >
+                <div className="aspect-video overflow-hidden">
+                  <img
+                    src={service.image}
+                    alt={service.title}
+                    className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
+                  />
                 </div>
-              </div>
-            </motion.div>
-          ))}
-        </div>
-      </motion.div>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <div className="absolute bottom-6 left-6">
+                    <div className="text-blue-500 mb-4">
+                      {service.icon}
+                    </div>
+                    <h3 className="text-2xl text-white mb-2">{service.title}</h3>
+                    <p className="text-white/60">{service.description}</p>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
+      </div>
     </div>
   );
 };
